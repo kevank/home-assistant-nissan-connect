@@ -2,6 +2,24 @@
 
 <!-- version list -->
 
+## v0.3.10 (2026-11-02)
+
+Release remote engine start/stop, fuel and oil range, and window sensors
+
+Gasoline vehicles such as the 2026 Pathfinder report the REMOTE_ENGINE
+service instead of REMOTE_CLIMATE_CONTROL, so they had no way to start
+remotely. Remote engine start and Remote engine stop buttons are created
+only when REMOTE_ENGINE is enabled and subscribed and are re-checked
+before each press. A refused command reports Nissan's status details (for
+example RES_FAILED) with a hint about what the vehicle needs.
+
+Fuel range, distance until the next oil change, and per-window and sunroof
+state are exposed for vehicles that report them.
+
+Also removes a 0.3.5 release entry created before the fork had its
+version tags.
+
+
 ## v0.3.9 (2026-10-31)
 
 Added an on-demand Refresh button
