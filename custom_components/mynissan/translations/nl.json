@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Het voertuig ondersteunt klimaatmodus {mode} niet."
+    },
+    "engine_command_rejected": {
+      "message": "Het voertuig heeft de motoropdracht niet voltooid (status: {status}, details: {details}). Vergrendel het voertuig, sluit alle deuren, de motorkap en de kofferbak en zorg dat er geen sleutel in het voertuig ligt."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Vernieuwen"
+      },
+      "remote_engine_start": {
+        "name": "Motor op afstand starten"
+      },
+      "remote_engine_stop": {
+        "name": "Motor op afstand stoppen"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Laadkabel aangesloten"
+      },
+      "window_front_left": {
+        "name": "Raam linksvoor"
+      },
+      "window_front_right": {
+        "name": "Raam rechtsvoor"
+      },
+      "window_rear_left": {
+        "name": "Raam linksachter"
+      },
+      "window_rear_right": {
+        "name": "Raam rechtsachter"
+      },
+      "sunroof": {
+        "name": "Schuifdak"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Actieradius"
+      },
+      "fuel_range": {
+        "name": "Actieradius brandstof"
+      },
+      "oil_change_range": {
+        "name": "Afstand tot olieverversing"
       }
     }
   }

@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "车辆不支持空调模式 {mode}。"
+    },
+    "engine_command_rejected": {
+      "message": "车辆未完成发动机指令（状态：{status}，详情：{details}）。请锁好车辆，关闭所有车门、发动机盖和后备箱，并确保车内没有钥匙。"
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "刷新"
+      },
+      "remote_engine_start": {
+        "name": "远程启动发动机"
+      },
+      "remote_engine_stop": {
+        "name": "远程关闭发动机"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "充电线已连接"
+      },
+      "window_front_left": {
+        "name": "左前车窗"
+      },
+      "window_front_right": {
+        "name": "右前车窗"
+      },
+      "window_rear_left": {
+        "name": "左后车窗"
+      },
+      "window_rear_right": {
+        "name": "右后车窗"
+      },
+      "sunroof": {
+        "name": "天窗"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "续航里程"
+      },
+      "fuel_range": {
+        "name": "燃油续航里程"
+      },
+      "oil_change_range": {
+        "name": "距离换机油"
       }
     }
   }

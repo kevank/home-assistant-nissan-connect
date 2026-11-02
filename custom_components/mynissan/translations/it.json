@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Il veicolo non supporta la modalità del climatizzatore {mode}."
+    },
+    "engine_command_rejected": {
+      "message": "Il veicolo non ha completato il comando del motore (stato: {status}, dettagli: {details}). Blocca il veicolo, chiudi tutte le portiere, il cofano e il bagagliaio e assicurati che non ci sia una chiave all'interno."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Aggiorna"
+      },
+      "remote_engine_start": {
+        "name": "Avviamento remoto del motore"
+      },
+      "remote_engine_stop": {
+        "name": "Arresto remoto del motore"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Cavo collegato"
+      },
+      "window_front_left": {
+        "name": "Finestrino anteriore sinistro"
+      },
+      "window_front_right": {
+        "name": "Finestrino anteriore destro"
+      },
+      "window_rear_left": {
+        "name": "Finestrino posteriore sinistro"
+      },
+      "window_rear_right": {
+        "name": "Finestrino posteriore destro"
+      },
+      "sunroof": {
+        "name": "Tetto apribile"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Autonomia"
+      },
+      "fuel_range": {
+        "name": "Autonomia carburante"
+      },
+      "oil_change_range": {
+        "name": "Distanza al cambio olio"
       }
     }
   }

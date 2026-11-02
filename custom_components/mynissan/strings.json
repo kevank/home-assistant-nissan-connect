@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "The vehicle does not support HVAC mode {mode}."
+    },
+    "engine_command_rejected": {
+      "message": "The vehicle did not complete the remote engine command (status: {status}, details: {details}). Lock the vehicle, close all doors, the hood and the trunk, and make sure no key is inside."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Refresh"
+      },
+      "remote_engine_start": {
+        "name": "Remote engine start"
+      },
+      "remote_engine_stop": {
+        "name": "Remote engine stop"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Plugged in"
+      },
+      "window_front_left": {
+        "name": "Front left window"
+      },
+      "window_front_right": {
+        "name": "Front right window"
+      },
+      "window_rear_left": {
+        "name": "Rear left window"
+      },
+      "window_rear_right": {
+        "name": "Rear right window"
+      },
+      "sunroof": {
+        "name": "Sunroof"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Range"
+      },
+      "fuel_range": {
+        "name": "Fuel range"
+      },
+      "oil_change_range": {
+        "name": "Distance until oil change"
       }
     }
   }

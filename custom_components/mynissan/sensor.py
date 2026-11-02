@@ -115,6 +115,36 @@ ODOMETER_DESCRIPTION = NissanSensorEntityDescription(
     last_updated_fn=lambda status: status.mileage.recorded_at if status.mileage else None,
 )
 
+FUEL_RANGE_DESCRIPTION = NissanSensorEntityDescription(
+    key="fuel_range",
+    translation_key="fuel_range",
+    icon="mdi:gas-station",
+    device_class=SensorDeviceClass.DISTANCE,
+    state_class=SensorStateClass.MEASUREMENT,
+    value_fn=lambda status: status.fuel_range.value if status.fuel_range else None,
+    unit_fn=lambda status: _distance_unit(status.fuel_range.unit) if status.fuel_range else None,
+    last_updated_fn=lambda status: status.fuel_range.last_updated_at if status.fuel_range else None,
+)
+
+OIL_CHANGE_RANGE_DESCRIPTION = NissanSensorEntityDescription(
+    key="oil_change_range",
+    translation_key="oil_change_range",
+    icon="mdi:oil",
+    device_class=SensorDeviceClass.DISTANCE,
+    state_class=SensorStateClass.MEASUREMENT,
+    value_fn=lambda status: (
+        status.engine_oil_drain_range.range if status.engine_oil_drain_range else None
+    ),
+    unit_fn=lambda status: (
+        _distance_unit(status.engine_oil_drain_range.unit)
+        if status.engine_oil_drain_range
+        else None
+    ),
+    last_updated_fn=lambda status: (
+        status.engine_oil_drain_range.last_updated_at if status.engine_oil_drain_range else None
+    ),
+)
+
 TIRE_SENSOR_DESCRIPTIONS: tuple[NissanSensorEntityDescription, ...] = tuple(
     NissanSensorEntityDescription(
         key=f"tire_pressure_{position}",
@@ -192,6 +222,10 @@ async def async_setup_entry(
             )
         if status.mileage is not None:
             entities.append(NissanSensor(coordinator, vehicle, ODOMETER_DESCRIPTION))
+        if status.fuel_range is not None:
+            entities.append(NissanSensor(coordinator, vehicle, FUEL_RANGE_DESCRIPTION))
+        if status.engine_oil_drain_range is not None:
+            entities.append(NissanSensor(coordinator, vehicle, OIL_CHANGE_RANGE_DESCRIPTION))
         if status.tire_pressure is not None:
             entities.extend(
                 NissanSensor(coordinator, vehicle, description)

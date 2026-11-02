@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Das Fahrzeug unterstützt den Klimamodus {mode} nicht."
+    },
+    "engine_command_rejected": {
+      "message": "Das Fahrzeug hat den Motorbefehl nicht ausgeführt (Status: {status}, Details: {details}). Verriegle das Fahrzeug, schließe alle Türen, die Motorhaube und den Kofferraum und stelle sicher, dass kein Schlüssel im Fahrzeug ist."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Aktualisieren"
+      },
+      "remote_engine_start": {
+        "name": "Motor-Fernstart"
+      },
+      "remote_engine_stop": {
+        "name": "Motor-Fernstopp"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Ladekabel angeschlossen"
+      },
+      "window_front_left": {
+        "name": "Fenster vorne links"
+      },
+      "window_front_right": {
+        "name": "Fenster vorne rechts"
+      },
+      "window_rear_left": {
+        "name": "Fenster hinten links"
+      },
+      "window_rear_right": {
+        "name": "Fenster hinten rechts"
+      },
+      "sunroof": {
+        "name": "Schiebedach"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Reichweite"
+      },
+      "fuel_range": {
+        "name": "Kraftstoffreichweite"
+      },
+      "oil_change_range": {
+        "name": "Strecke bis zum Ölwechsel"
       }
     }
   }

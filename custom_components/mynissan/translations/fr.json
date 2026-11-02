@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Le véhicule ne prend pas en charge le mode de climatisation {mode}."
+    },
+    "engine_command_rejected": {
+      "message": "Le véhicule n'a pas exécuté la commande du moteur (statut : {status}, détails : {details}). Verrouillez le véhicule, fermez toutes les portes, le capot et le coffre, et vérifiez qu'aucune clé ne se trouve à l'intérieur."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Actualiser"
+      },
+      "remote_engine_start": {
+        "name": "Démarrage du moteur à distance"
+      },
+      "remote_engine_stop": {
+        "name": "Arrêt du moteur à distance"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Câble branché"
+      },
+      "window_front_left": {
+        "name": "Vitre avant gauche"
+      },
+      "window_front_right": {
+        "name": "Vitre avant droite"
+      },
+      "window_rear_left": {
+        "name": "Vitre arrière gauche"
+      },
+      "window_rear_right": {
+        "name": "Vitre arrière droite"
+      },
+      "sunroof": {
+        "name": "Toit ouvrant"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Autonomie"
+      },
+      "fuel_range": {
+        "name": "Autonomie en carburant"
+      },
+      "oil_change_range": {
+        "name": "Distance avant la vidange"
       }
     }
   }

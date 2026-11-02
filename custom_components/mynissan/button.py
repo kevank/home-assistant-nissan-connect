@@ -11,6 +11,7 @@ from pynissan import NissanClient, ServiceRequest, Vehicle
 from .commands import (
     DOOR_LOCK_SERVICES,
     DOOR_UNLOCK_SERVICES,
+    ENGINE_SERVICES,
     HORN_LIGHTS_SERVICES,
     NissanCommandEntity,
     supports_service,
@@ -27,6 +28,7 @@ class NissanButtonDescription(ButtonEntityDescription):
     services: tuple[str, ...]
     command: Callable[[NissanClient, str], Awaitable[ServiceRequest]]
     excluded_services: tuple[str, ...] = ()
+    rejected_key: str = "command_rejected"
 
 
 BUTTON_DESCRIPTIONS = (
@@ -59,6 +61,23 @@ BUTTON_DESCRIPTIONS = (
         services=DOOR_UNLOCK_SERVICES,
         excluded_services=DOOR_LOCK_SERVICES,
         command=lambda client, vin: client.async_unlock_doors(vin),
+    ),
+    # Uses the climate defaults saved in the MyNISSAN app.
+    NissanButtonDescription(
+        key="remote_engine_start",
+        translation_key="remote_engine_start",
+        icon="mdi:car-key",
+        services=ENGINE_SERVICES,
+        rejected_key="engine_command_rejected",
+        command=lambda client, vin: client.async_start_engine(vin),
+    ),
+    NissanButtonDescription(
+        key="remote_engine_stop",
+        translation_key="remote_engine_stop",
+        icon="mdi:car-off",
+        services=ENGINE_SERVICES,
+        rejected_key="engine_command_rejected",
+        command=lambda client, vin: client.async_stop_engine(vin),
     ),
 )
 
@@ -99,6 +118,7 @@ class NissanCommandButton(NissanCommandEntity, ButtonEntity):
     ) -> None:
         """Initialize the command button."""
         self.entity_description = description
+        self._command_rejected_key = description.rejected_key
         super().__init__(coordinator, client, vehicle)
 
     async def async_press(self) -> None:

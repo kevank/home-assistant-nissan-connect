@@ -8,6 +8,7 @@ import pytest
 from custom_components.mynissan.binary_sensor import (
     BINARY_SENSOR_DESCRIPTIONS,
     DOOR_SENSOR_DESCRIPTIONS,
+    WINDOW_SENSOR_DESCRIPTIONS,
 )
 from custom_components.mynissan.button import BUTTON_DESCRIPTIONS
 from custom_components.mynissan.charge_completion import NissanChargeCompletionSensor
@@ -17,7 +18,9 @@ from custom_components.mynissan.refresh import NissanRefreshButton
 from custom_components.mynissan.sensor import (
     BATTERY_SENSOR_DESCRIPTIONS,
     CLIMATE_SENSOR_DESCRIPTIONS,
+    FUEL_RANGE_DESCRIPTION,
     ODOMETER_DESCRIPTION,
+    OIL_CHANGE_RANGE_DESCRIPTION,
     TIRE_SENSOR_DESCRIPTIONS,
     WARNINGS_DESCRIPTION,
 )
@@ -44,16 +47,26 @@ def test_entity_translations(language: str) -> None:
                 *CLIMATE_SENSOR_DESCRIPTIONS,
                 *TIRE_SENSOR_DESCRIPTIONS,
                 ODOMETER_DESCRIPTION,
+                FUEL_RANGE_DESCRIPTION,
+                OIL_CHANGE_RANGE_DESCRIPTION,
                 WARNINGS_DESCRIPTION,
                 NissanChargeCompletionSensor.entity_description,
             ),
         ),
-        ("binary_sensor", (*BINARY_SENSOR_DESCRIPTIONS, *DOOR_SENSOR_DESCRIPTIONS)),
+        (
+            "binary_sensor",
+            (*BINARY_SENSOR_DESCRIPTIONS, *DOOR_SENSOR_DESCRIPTIONS, *WINDOW_SENSOR_DESCRIPTIONS),
+        ),
         ("button", (*BUTTON_DESCRIPTIONS, NissanRefreshButton.entity_description)),
         ("lock", (NissanDoorLock.entity_description,)),
         ("image", (NissanVehicleImage.entity_description,)),
     ):
         for description in descriptions:
             assert document["entity"][platform][description.translation_key]["name"].strip()
-    for key in ("command_failed", "command_rejected", "command_not_supported"):
+    for key in (
+        "command_failed",
+        "command_rejected",
+        "command_not_supported",
+        "engine_command_rejected",
+    ):
         assert document["exceptions"][key]["message"].strip()

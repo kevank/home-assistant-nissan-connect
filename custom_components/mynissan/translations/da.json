@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Køretøjet understøtter ikke klimatilstanden {mode}."
+    },
+    "engine_command_rejected": {
+      "message": "Køretøjet gennemførte ikke motorkommandoen (status: {status}, detaljer: {details}). Lås køretøjet, luk alle døre, motorhjelmen og bagagerummet, og sørg for, at der ikke er en nøgle indenfor."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Opdater"
+      },
+      "remote_engine_start": {
+        "name": "Fjernstart af motor"
+      },
+      "remote_engine_stop": {
+        "name": "Fjernstop af motor"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Ladekabel tilsluttet"
+      },
+      "window_front_left": {
+        "name": "Venstre forrude"
+      },
+      "window_front_right": {
+        "name": "Højre forrude"
+      },
+      "window_rear_left": {
+        "name": "Venstre bagrude"
+      },
+      "window_rear_right": {
+        "name": "Højre bagrude"
+      },
+      "sunroof": {
+        "name": "Soltag"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Rækkevidde"
+      },
+      "fuel_range": {
+        "name": "Rækkevidde på brændstof"
+      },
+      "oil_change_range": {
+        "name": "Afstand til olieskift"
       }
     }
   }

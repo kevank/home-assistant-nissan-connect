@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Pojazd nie obsługuje trybu klimatyzacji {mode}."
+    },
+    "engine_command_rejected": {
+      "message": "Pojazd nie wykonał polecenia silnika (status: {status}, szczegóły: {details}). Zablokuj pojazd, zamknij wszystkie drzwi, maskę i bagażnik oraz upewnij się, że w środku nie ma kluczyka."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Odśwież"
+      },
+      "remote_engine_start": {
+        "name": "Zdalne uruchomienie silnika"
+      },
+      "remote_engine_stop": {
+        "name": "Zdalne wyłączenie silnika"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Przewód podłączony"
+      },
+      "window_front_left": {
+        "name": "Lewa przednia szyba"
+      },
+      "window_front_right": {
+        "name": "Prawa przednia szyba"
+      },
+      "window_rear_left": {
+        "name": "Lewa tylna szyba"
+      },
+      "window_rear_right": {
+        "name": "Prawa tylna szyba"
+      },
+      "sunroof": {
+        "name": "Szyberdach"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Zasięg"
+      },
+      "fuel_range": {
+        "name": "Zasięg na paliwie"
+      },
+      "oil_change_range": {
+        "name": "Dystans do wymiany oleju"
       }
     }
   }

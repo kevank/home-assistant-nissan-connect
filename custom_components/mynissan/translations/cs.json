@@ -76,6 +76,9 @@
     },
     "unsupported_hvac_mode": {
       "message": "Vozidlo nepodporuje režim klimatizace {mode}."
+    },
+    "engine_command_rejected": {
+      "message": "Vozidlo nedokončilo příkaz pro motor (stav: {status}, podrobnosti: {details}). Zamkněte vozidlo, zavřete všechny dveře, kapotu a kufr a ujistěte se, že uvnitř není klíč."
     }
   },
   "entity": {
@@ -99,6 +102,12 @@
       },
       "refresh": {
         "name": "Obnovit"
+      },
+      "remote_engine_start": {
+        "name": "Dálkové nastartování motoru"
+      },
+      "remote_engine_stop": {
+        "name": "Dálkové vypnutí motoru"
       }
     },
     "image": {
@@ -153,6 +162,21 @@
       },
       "plugged_in": {
         "name": "Kabel připojen"
+      },
+      "window_front_left": {
+        "name": "Levé přední okno"
+      },
+      "window_front_right": {
+        "name": "Pravé přední okno"
+      },
+      "window_rear_left": {
+        "name": "Levé zadní okno"
+      },
+      "window_rear_right": {
+        "name": "Pravé zadní okno"
+      },
+      "sunroof": {
+        "name": "Střešní okno"
       }
     },
     "device_tracker": {
@@ -196,6 +220,12 @@
       },
       "range": {
         "name": "Dojezd"
+      },
+      "fuel_range": {
+        "name": "Dojezd na palivo"
+      },
+      "oil_change_range": {
+        "name": "Vzdálenost do výměny oleje"
       }
     }
   }
