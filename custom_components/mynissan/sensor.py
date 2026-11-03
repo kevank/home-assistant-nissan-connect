@@ -22,7 +22,9 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from pynissan import DistanceUnit, TemperatureUnit, Vehicle, VehicleStatus
 
 from .charge_completion import NissanChargeCompletionSensor, remaining_charge_minutes
+from .commands import ENGINE_SERVICES, supports_service
 from .coordinator import NissanDataUpdateCoordinator
+from .engine_history import ENGINE_HISTORY_DESCRIPTIONS, NissanEngineHistorySensor
 from .entity import NissanEntity
 from .models import NissanConfigEntry
 from .timestamps import timestamp_attributes
@@ -232,6 +234,11 @@ async def async_setup_entry(
                 for description in TIRE_SENSOR_DESCRIPTIONS
             )
         entities.append(NissanSensor(coordinator, vehicle, WARNINGS_DESCRIPTION))
+        if supports_service(entry.runtime_data.capabilities[vehicle.vin], ENGINE_SERVICES):
+            entities.extend(
+                NissanEngineHistorySensor(coordinator, vehicle, event)
+                for event in ENGINE_HISTORY_DESCRIPTIONS
+            )
 
     async_add_entities(entities)
 

@@ -9,12 +9,15 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
 from homeassistant.helpers import entity_registry as er
 from pynissan import (
+    ClimateParameters,
+    ClimateSettings,
     NissanError,
     ServiceCapability,
     ServiceRequest,
     ServiceRequestKind,
     ServiceRequestResult,
     ServiceRequestStatus,
+    TemperatureUnit,
 )
 
 from custom_components.mynissan.const import DOMAIN
@@ -49,6 +52,7 @@ async def setup_commands(
     )
     client.async_get_vehicle_status = AsyncMock(return_value=replace(VEHICLE_STATUS, doors=DOORS))
     client.async_get_vehicle_location = AsyncMock(return_value=VEHICLE_LOCATION)
+    client.async_get_climate_defaults = AsyncMock(return_value=None)
     client.async_lock_doors = AsyncMock(
         return_value=ServiceRequest("lock", ServiceRequestKind.DOOR)
     )
@@ -173,8 +177,16 @@ ENGINE_SERVICES = (ServiceCapability("REMOTE_ENGINE", True, True),)
 async def test_remote_engine_commands(hass: HomeAssistant) -> None:
     """Remote start and stop each send one engine request and wait for it."""
     client = await setup_commands(hass, ENGINE_SERVICES)
+    assert _entity_state(hass, Platform.SENSOR, "last_remote_engine_start").state == "unknown"
     await call_command(hass, Platform.BUTTON, "remote_engine_start", "press")
-    client.async_start_engine.assert_awaited_once_with(VEHICLE.vin)
+    client.async_start_engine.assert_awaited_once_with(
+        VEHICLE.vin,
+        climate=ClimateSettings(
+            22.0,
+            TemperatureUnit.CELSIUS,
+            ClimateParameters(seats=None, steering_wheel_heater=False, defrost_and_deicer=False),
+        ),
+    )
     client.async_wait_for_service_request.assert_awaited_with(
         VEHICLE.vin, ServiceRequest("start", ServiceRequestKind.ENGINE)
     )
@@ -184,6 +196,8 @@ async def test_remote_engine_commands(hass: HomeAssistant) -> None:
         VEHICLE.vin, ServiceRequest("stop", ServiceRequestKind.ENGINE)
     )
     assert client.coordinator.async_request_refresh.await_count == 2
+    for key in ("last_remote_engine_start", "last_remote_engine_stop"):
+        assert _entity_state(hass, Platform.SENSOR, key).state not in ("unknown", "unavailable")
 
 
 @pytest.mark.parametrize(
@@ -217,6 +231,7 @@ async def test_remote_engine_rejection_explains_cause(hass: HomeAssistant) -> No
     assert error.value.translation_key == "engine_command_rejected"
     assert error.value.translation_placeholders == {"status": "FAILED", "details": "RES_FAILED"}
     client.coordinator.async_request_refresh.assert_not_called()
+    assert _entity_state(hass, Platform.SENSOR, "last_remote_engine_start").state == "unknown"
 
 
 async def test_revoked_engine_subscription_blocks_start(hass: HomeAssistant) -> None:
