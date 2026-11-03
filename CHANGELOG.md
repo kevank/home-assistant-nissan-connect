@@ -2,6 +2,29 @@
 
 <!-- version list -->
 
+## v0.3.11 (2026-11-03)
+
+Add climate settings, an engine start action, and last start/stop sensors
+
+Remote engine start now sends a climate request with each start.
+Configuration controls for cabin temperature, each seat that supports
+heating or cooling, steering wheel heat, and defrost start from the
+defaults saved in the MyNISSAN app and keep their values across restarts.
+Vehicles that report no HVAC capabilities still start with the app's
+settings.
+
+The mynissan.remote_engine_start action starts the engine with different
+settings for a single start, so automations can choose settings from the
+outside temperature.
+
+Last remote engine start and Last remote engine stop record successful
+commands sent from Home Assistant, since the vehicle does not report
+whether the engine is running.
+
+A refused engine command now lists the common causes, including two
+remote starts without driving in between.
+
+
 ## v0.3.10 (2026-11-02)
 
 Release remote engine start/stop, fuel and oil range, and window sensors
