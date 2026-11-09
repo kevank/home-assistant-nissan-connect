@@ -197,6 +197,9 @@ class NissanEngineStartButton(NissanCommandButton):
                 defrost=defrost,
             )
         )
+        # Some vehicles refuse an explicit climate request that the plain start accepts.
+        if self.climate is not None and climate == self.climate.saved:
+            climate = None
         await self._async_run_command(
             lambda: self._client.async_start_engine(self._vehicle.vin, climate=climate),
             self.entity_description.services,

@@ -44,6 +44,8 @@ instead of a two-way lock control.
 Remote engine start sends the temperature, seat, steering wheel, and defrost
 settings shown on the vehicle's configuration controls. They start from the defaults
 saved in the MyNISSAN app and only list the seats and options the vehicle reports.
+While the settings still match those saved defaults, the start is sent without climate
+settings and the vehicle uses its saved ones.
 The `mynissan.remote_engine_start` action starts the engine with different settings
 for one start, for example based on the outside temperature:
 

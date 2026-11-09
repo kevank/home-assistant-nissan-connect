@@ -295,6 +295,13 @@ async def test_action_requires_start_button(hass: HomeAssistant) -> None:
     client.async_start_engine.assert_not_called()
 
 
+async def test_settings_matching_saved_defaults_send_plain_start(hass: HomeAssistant) -> None:
+    """Unchanged settings leave the climate request out so the saved defaults apply."""
+    client = await setup_engine(hass)
+    await _start(hass)
+    client.async_start_engine.assert_awaited_once_with(VEHICLE.vin, climate=None)
+
+
 async def test_absent_defaults_use_vehicle_default(hass: HomeAssistant) -> None:
     """Without saved defaults the vehicle's default temperature is used and options are off."""
     client = await setup_engine(hass, defaults=None)

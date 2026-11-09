@@ -46,6 +46,8 @@ class EngineClimate:
     seats: dict[str, SeatClimateOption] = field(default_factory=dict)
     steering_wheel_heater: bool | None = None
     defrost: bool = False
+    # What the vehicle's saved defaults amount to, when they are fully known.
+    saved: ClimateSettings | None = None
 
     def settings(
         self,
@@ -106,6 +108,14 @@ def engine_climate(
     )
     if defaults is not None:
         _apply_defaults(climate, defaults)
+        saved = defaults.climate
+        if (
+            saved is not None
+            and defaults.parameters is not None
+            and saved.unit == climate.unit
+            and saved.value == climate.temperature
+        ):
+            climate.saved = climate.settings()
     return climate
 
 
